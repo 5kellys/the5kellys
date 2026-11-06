@@ -3,30 +3,213 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Kellys</title>
-<meta name="description" content="The Kelly family.">
-
+<title>the5kellys</title>
+<meta name="description" content="Céad míle fáilte! We're the Kellys: John, Chrissy, Brendan, Carson and Ava.">
+<meta name="theme-color" content="#FBF6EA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1A14" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<meta property="og:type" content="website">
+<meta property="og:title" content="the5kellys">
+<meta property="og:description" content="Céad míle fáilte! We're the Kellys, all five of us.">
+<meta property="og:url" content="https://5kellys.github.io/the5kellys/">
+<meta property="og:image" content="https://5kellys.github.io/the5kellys/share.png">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-  :root { --bg: #fbfaf7; --fg: #1d1d1f; --muted: #5b5b60; --accent: #1d1d1f; }
-  @media (prefers-color-scheme: dark) { :root { --bg: #141415; --fg: #f2f2f0; --muted: #a9a9ad; --accent: #f2f2f0; } }
+  @font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 400 800; font-stretch: 75% 100%;
+    font-display: swap; src: url("fonts/bricolage-grotesque.woff2") format("woff2"); }
+  :root { --bg: #FBF6EA; --card: #FFFFFF; --fg: #10231A; --muted: #4A5A51; --link: #137A3A; --line: #DCD3BE;
+    --kelly: #4CBB17; --deep: #0B4D25; --on-deep: #FBF6EA; --gold: #E3B23C;
+    --h1: #A8D98F; --h2: #6CC04A; --h3: #2E8B3E; --wall: #9A9384; --sheep: #FFFFFF; --cloud: #C9CED6; --rain: #7C8AA0; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0E1A14; --card: #16261D; --fg: #FBF6EA; --muted: #A9BBB0; --link: #7FDB8F; --line: #2A3D31;
+      --deep: #081109; --h1: #1E3A27; --h2: #23502F; --h3: #2C6B3B; --wall: #6F6A5E; --sheep: #E9E6DD; --cloud: #4A5262; --rain: #8C9BB3; }
+  }
+  * { box-sizing: border-box; }
   html, body { margin: 0; background: var(--bg); color: var(--fg); }
-  body { font: 18px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 40rem; margin: 0 auto; padding: 18vh 16px 4rem; }
-  h1 { font-size: clamp(2.25rem, 7vw, 3.5rem); line-height: 1.1; margin: 0 0 .5rem; }
-  p { color: var(--muted); margin: 0 0 1rem; }
-  ul { list-style: none; padding: 0; margin: 2rem 0 0; }
-  li { margin: 0 0 .75rem; }
-  a { color: var(--accent); font-size: 1.125rem; }
+  body { font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; overflow-x: hidden; }
+  .d { font-family: "Bricolage Grotesque", system-ui, sans-serif; }
+  .wrap { max-width: 74rem; margin: 0 auto; padding: 0 16px; }
+  a { color: var(--link); }
+  a:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; border-radius: 4px; }
+
+  .five5 { display: inline-block; height: 1.15em; width: auto; vertical-align: -0.2em; margin: 0 .02em; }
+  header { padding: 18px 0; display: flex; justify-content: space-between; align-items: center; }
+  header .mark { text-decoration: none; color: var(--fg); font-weight: 800; font-size: 26px; letter-spacing: -.03em; font-stretch: 80%; }
+  header nav { display: flex; gap: 8px; font-size: 16px; font-weight: 600; }
+  header nav a { color: var(--muted); text-decoration: none; display: inline-block; padding: 11px 8px; }
+  header nav a:hover { color: var(--fg); text-decoration: underline; }
+
+  .hero { padding: 3vh 0 0; position: relative; }
+  .wordmark { margin: 0; font-weight: 800; font-stretch: 75%; letter-spacing: -.03em; line-height: .86;
+    font-size: clamp(56px, 22vw, 230px); }
+  .wordmark .five5 { height: 1.25em; vertical-align: -0.24em; }
+  .wordmark .br { display: block; }
+  @media (min-width: 900px) { .wordmark .br { display: inline; } }
+  .failte { display: flex; align-items: center; gap: 12px; font-size: clamp(1.5rem, 5vw, 2.4rem); font-weight: 800;
+    font-stretch: 85%; letter-spacing: -.02em; margin: 1.4rem 0 .2rem; }
+  .failte svg { width: 1.3em; height: 1.3em; flex: none; transform: rotate(-12deg); }
+  .failte + p { margin: 0; color: var(--muted); font-size: clamp(1.05rem, 2.8vw, 1.3rem); }
+  .jump { margin: .3rem 0 0; font-weight: 700; }
+  .jump a { text-decoration: none; display: inline-block; padding: 12px 0; }
+  .jump a:hover { text-decoration: underline; }
+  .ogham { display: flex; align-items: center; gap: 12px; margin-top: .6rem; color: var(--muted); font-size: 16px; }
+  .ogham svg { height: 34px; width: auto; color: var(--fg); flex: none; }
+
+  .hills { display: block; width: 100%; height: clamp(110px, 22vw, 260px); margin-top: 24px; }
+  .hills .a { fill: var(--h1); } .hills .b { fill: var(--h2); } .hills .c { fill: var(--h3); }
+  .hills .wall { fill: none; stroke: var(--wall); stroke-width: 9; stroke-linecap: round; stroke-dasharray: 9 5; }
+  .hills .wool { fill: var(--sheep); } .hills .face { fill: #1E1E1E; } .hills .leg { stroke: #1E1E1E; stroke-width: 3; stroke-linecap: round; }
+  .hills .cloud { fill: var(--cloud); } .hills .rain { stroke: var(--rain); stroke-width: 3; stroke-linecap: round; }
+  .meadow { background: var(--h3); height: 18px; margin-top: -2px; }
+
+  .knot { display: flex; align-items: center; gap: 16px; color: var(--kelly); margin: 28px 0 18px; }
+  @media (min-width: 720px) { .knot { margin: 44px 0 26px; } }
+  .knot::before, .knot::after { content: ""; flex: 1; height: 2px; background: var(--line); }
+  .knot svg { width: 44px; height: 44px; }
+  h2 { text-align: center; font-size: clamp(1.6rem, 5vw, 2.3rem); font-weight: 800; font-stretch: 85%; letter-spacing: -.02em; margin: 0; }
+  h2 + .sub { text-align: center; color: var(--muted); margin: 4px 0 26px; }
+  section { padding: 0 0 24px; }
+
+  .cards { display: grid; gap: 18px; list-style: none; padding: 0; margin: 0; }
+  @media (min-width: 640px) { .cards { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1040px) { .cards { grid-template-columns: repeat(6, 1fr); gap: 24px; }
+    .card { grid-column: span 2; } .card:nth-child(4) { grid-column: 2 / span 2; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; position: relative;
+    display: flex; flex-direction: column; box-shadow: 0 10px 24px -18px rgba(16,35,26,.5); }
+  .card::before { content: ""; height: 10px; background: var(--kelly); }
+  .card .clover { position: absolute; right: 14px; top: 22px; width: 26px; height: 26px; opacity: .9; }
+  .card .in { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+  .card .n { margin: 0; font-size: 30px; font-weight: 800; font-stretch: 80%; letter-spacing: -.02em; line-height: 1.05; }
+  .card .n span { color: var(--muted); font-weight: 600; }
+  .card ul { list-style: none; margin: 0; padding: 8px 0 0; display: grid; gap: 0; }
+  .card li a { font-weight: 650; text-decoration: none; display: inline-block; padding: 11px 0; }
+  .card li a:hover { text-decoration: underline; }
+  .card li small { display: block; color: var(--muted); font-weight: 500; font-size: 16px; margin: -8px 0 6px; }
+  .card .home { margin: 0; padding-top: 19px; color: var(--muted); font-size: 16px; }
+  .card .home .five5 { height: 22px; }
+
+  .phrases { display: grid; gap: 14px; list-style: none; padding: 0; margin: 0 0 56px; }
+  @media (min-width: 720px) { .phrases { grid-template-columns: repeat(4, 1fr); } }
+  .phrases li { border: 2px dashed var(--line); border-radius: 14px; padding: 16px 18px; }
+  .phrases b { display: block; font-size: 22px; font-weight: 800; font-stretch: 85%; }
+  .phrases span { color: var(--muted); font-size: 16px; }
+
+  footer { background: var(--deep); color: var(--on-deep); padding: 30px 0 36px; }
+  footer .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; font-weight: 700; }
+  footer .five5 { height: 34px; }
+  footer em { font-style: normal; font-weight: 500; opacity: .85; }
 </style>
 </head>
 <body>
-<main>
-  <h1>The Kellys</h1>
-  <p>A new family site is on its way.</p>
-  <ul>
-    <li><a href="https://carson.the5kellys.com">Carson Kelly</a></li>
-    <li><a href="https://ava.the5kellys.com">Ava Kelly</a></li>
-  </ul>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="five" viewBox="6 0 94 135">
+    <rect x="20" y="4" width="46" height="22" fill="#4CBB17"/>
+    <rect x="66" y="4" width="24" height="22" rx="3" fill="#E3B23C"/>
+    <rect x="20" y="16" width="22" height="62" fill="#169B62"/>
+    <path d="M 28 68 A 34 34 0 0 1 86 92" fill="none" stroke="#7BC96F" stroke-width="22"/>
+    <path d="M 86 92 A 34 34 0 0 1 26 114" fill="none" stroke="#138A36" stroke-width="22"/>
+  </symbol>
+  
+  <symbol id="ogham" viewBox="0 0 180 40">
+    <g stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none">
+      <path d="M2 14 L10 20 L2 26"/><path d="M10 20 H172"/>
+      <path d="M22 20V6M30 20V6M38 20V6M46 20V6"/>
+      <path d="M60 15V25M68 15V25M76 15V25M84 15V25"/>
+      <path d="M98 20V34M106 20V34"/><path d="M120 20V34M128 20V34"/>
+      <path d="M140 15V25M147 15V25M154 15V25M161 15V25M168 15V25"/>
+    </g>
+  </symbol>
+  <symbol id="shamrock" viewBox="0 0 40 44">
+    <g fill="#4CBB17">
+      <circle cx="15" cy="9" r="7"/><circle cx="25" cy="9" r="7"/><path d="M8.5 11.5 L20 24 L31.5 11.5Z"/>
+      <circle cx="8" cy="20" r="7"/><circle cx="10" cy="30" r="7"/><path d="M5 13.5 L20 24 L4.5 34Z" />
+      <circle cx="32" cy="20" r="7"/><circle cx="30" cy="30" r="7"/><path d="M35 13.5 L20 24 L35.5 34Z"/>
+    </g>
+    <path d="M20 24 Q21 35 28 42" stroke="#138A36" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="triquetra" viewBox="-50 -50 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round">
+      <path d="M0 4 A30 30 0 0 1 0 -44 A30 30 0 0 1 0 4Z"/>
+      <path d="M0 4 A30 30 0 0 1 0 -44 A30 30 0 0 1 0 4Z" transform="rotate(120 0 -4)"/>
+      <path d="M0 4 A30 30 0 0 1 0 -44 A30 30 0 0 1 0 4Z" transform="rotate(240 0 -4)"/>
+      <circle cx="0" cy="-4" r="22"/>
+    </g>
+  </symbol>
+  <symbol id="sheep" viewBox="0 0 60 44">
+    <g style="fill:var(--sheep)"><circle cx="18" cy="16" r="9"/><circle cx="28" cy="12" r="10"/><circle cx="38" cy="16" r="9"/>
+      <circle cx="22" cy="24" r="9"/><circle cx="34" cy="24" r="9"/></g>
+    <path d="M22 31V41M34 31V41" stroke="#1E1E1E" stroke-width="3" stroke-linecap="round"/>
+    <ellipse fill="#1E1E1E" cx="48" cy="17" rx="7" ry="9"/>
+  </symbol>
+</svg>
+
+<header class="wrap">
+  <a class="mark d" href="./" aria-label="the5kellys, home">the<svg class="five5" viewBox="6 0 94 135" role="img" aria-label="5"><use href="#five"/></svg>kellys</a>
+  <nav aria-label="Family sites"><a href="https://carson.the5kellys.com">Carson</a><a href="https://ava.the5kellys.com">Ava</a></nav>
+</header>
+<div class="hero">
+  <div class="wrap">
+    <h1 class="wordmark d" aria-label="the5kellys">the<svg class="five5" viewBox="6 0 94 135" aria-hidden="true"><use href="#five"/></svg><span class="br">kellys</span></h1>
+    <p class="failte d"><svg viewBox="0 0 40 44" aria-hidden="true"><use href="#shamrock"/></svg><span lang="ga">Céad míle fáilte!</span></p>
+    <p>A hundred thousand welcomes. We're the Kellys, all five of us.</p>
+    <p class="jump"><a href="#who">Who's who <span aria-hidden="true">↓</span></a></p>
+    <div class="ogham"><svg viewBox="0 0 180 40" role="img" aria-label="Kelly, written in ogham"><use href="#ogham"/></svg><span>Kelly, in ogham, the old Irish alphabet</span></div>
+  </div>
+  <svg class="hills" viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g class="cloud"><circle cx="840" cy="52" r="26"/><circle cx="874" cy="40" r="32"/><circle cx="912" cy="54" r="24"/><rect x="820" y="52" width="110" height="26" rx="13"/></g>
+    <path class="rain" d="M846 92l-6 14M874 92l-6 14M902 92l-6 14"/>
+    <path class="a" d="M0 150 C240 70 480 80 720 125 S1200 70 1440 115 V260 H0Z"/>
+    <path class="b" d="M0 195 C300 125 600 145 860 185 S1260 135 1440 175 V260 H0Z"/>
+    <path class="wall" d="M0 205 C300 135 600 155 860 195 S1260 145 1440 185"/>
+    <path class="c" d="M0 235 C360 200 720 208 1000 230 S1300 212 1440 225 V260 H0Z"/>
+    <use href="#sheep" x="250" y="168" width="54" height="40"/>
+    <use href="#sheep" x="590" y="176" width="50" height="37"/>
+    <use href="#sheep" x="1020" y="186" width="54" height="40"/>
+  </svg>
+  <div class="meadow"></div>
+</div>
+
+<main class="wrap">
+  <div class="knot" aria-hidden="true"><svg><use href="#triquetra"/></svg></div>
+  <section id="who">
+    <h2 class="d">Who's who</h2>
+    <p class="sub">Five Kellys, five cards.</p>
+    <ul class="cards">
+      <li class="card"><svg class="clover" aria-hidden="true"><use href="#shamrock"/></svg><div class="in">
+        <h3 class="n d">John <span>Kelly</span></h3>
+        <ul><li><a href="https://crinaro.ai">Crinaro.AI <span aria-hidden="true">↗</span></a> <small>AI patterns and advisory</small></li>
+          <li><a href="https://www.linkedin.com/in/johnmkelly/" aria-label="John Kelly on LinkedIn">LinkedIn <span aria-hidden="true">↗</span></a></li></ul></div></li>
+      <li class="card"><svg class="clover" aria-hidden="true"><use href="#shamrock"/></svg><div class="in">
+        <h3 class="n d">Chrissy <span>Kelly</span></h3>
+        <p class="home"><svg class="five5" viewBox="6 0 94 135" aria-hidden="true"><use href="#five"/></svg> the5kellys.com</p></div></li>
+      <li class="card"><svg class="clover" aria-hidden="true"><use href="#shamrock"/></svg><div class="in">
+        <h3 class="n d">Brendan <span>Kelly</span></h3>
+        <ul><li><a href="https://www.linkedin.com/in/brendan-kelly-5ab61b184/" aria-label="Brendan Kelly on LinkedIn">LinkedIn <span aria-hidden="true">↗</span></a></li></ul></div></li>
+      <li class="card"><svg class="clover" aria-hidden="true"><use href="#shamrock"/></svg><div class="in">
+        <h3 class="n d">Carson <span>Kelly</span></h3>
+        <ul><li><a href="https://carson.the5kellys.com">carson.the5kellys.com <span aria-hidden="true">↗</span></a> <small>website</small></li>
+          <li><a href="https://www.linkedin.com/in/carson-kelly-8b4893228/" aria-label="Carson Kelly on LinkedIn">LinkedIn <span aria-hidden="true">↗</span></a></li></ul></div></li>
+      <li class="card"><svg class="clover" aria-hidden="true"><use href="#shamrock"/></svg><div class="in">
+        <h3 class="n d">Ava <span>Kelly</span></h3>
+        <ul><li><a href="https://ava.the5kellys.com">ava.the5kellys.com <span aria-hidden="true">↗</span></a> <small>portfolio</small></li>
+          <li><a href="https://www.linkedin.com/in/ava-kelly-795471262/" aria-label="Ava Kelly on LinkedIn">LinkedIn <span aria-hidden="true">↗</span></a></li></ul></div></li>
+    </ul>
+  </section>
+
+  <div class="knot" aria-hidden="true"><svg><use href="#triquetra"/></svg></div>
+  <section>
+    <h2 class="d">A wee bit of Irish</h2>
+    <p class="sub">In case you need it.</p>
+    <ul class="phrases">
+      <li><b class="d" lang="ga">Dia duit</b><span>Hello</span></li>
+      <li><b class="d" lang="ga">Céad míle fáilte</b><span>A hundred thousand welcomes</span></li>
+      <li><b class="d">The craic</b><span>The fun, the chat, a good time</span></li>
+      <li><b class="d" lang="ga">Sláinte</b><span>Cheers, to your health</span></li>
+    </ul>
+  </section>
 </main>
+<footer><div class="wrap d"><svg class="five5" viewBox="6 0 94 135" aria-hidden="true"><use href="#five"/></svg> <span>the5kellys.com · <em lang="ga" title="Bye for now">Slán go fóill!</em></span></div></footer>
 </body>
 </html>
