@@ -21,10 +21,10 @@
     font-display: swap; src: url("fonts/bricolage-grotesque.woff2") format("woff2"); }
   :root { --bg: #FBF6EA; --card: #FFFFFF; --fg: #10231A; --muted: #4A5A51; --link: #137A3A; --line: #DCD3BE;
     --kelly: #4CBB17; --deep: #0B4D25; --on-deep: #FBF6EA; --gold: #E3B23C;
-    --h1: #A8D98F; --h2: #6CC04A; --h3: #2E8B3E; --wall: #9A9384; --sheep: #FFFFFF; --cloud: #C9CED6; --rain: #7C8AA0; }
+    --h1: #A8D98F; --h2: #6CC04A; --h3: #2E8B3E; --wall: #9A9384; --sheep: #FFFFFF; --cloud: #C9CED6; --rain: #7C8AA0; --face-bg: #E4F2DA; }
   @media (prefers-color-scheme: dark) {
     :root { --bg: #0E1A14; --card: #16261D; --fg: #FBF6EA; --muted: #A9BBB0; --link: #7FDB8F; --line: #2A3D31;
-      --deep: #081109; --h1: #1E3A27; --h2: #23502F; --h3: #2C6B3B; --wall: #6F6A5E; --sheep: #E9E6DD; --cloud: #4A5262; --rain: #8C9BB3; }
+      --deep: #081109; --h1: #1E3A27; --h2: #23502F; --h3: #2C6B3B; --wall: #6F6A5E; --sheep: #E9E6DD; --cloud: #4A5262; --rain: #8C9BB3; --face-bg: #1E3A27; }
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; background: var(--bg); color: var(--fg); }
@@ -81,6 +81,12 @@
   .card::before { content: ""; height: 10px; background: var(--kelly); }
   .card .clover { position: absolute; right: 14px; top: 22px; width: 26px; height: 26px; opacity: .9; }
   .card .in { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .card .who { display: flex; align-items: center; gap: 16px; padding-right: 30px; }
+  .card .av { flex: none; width: 104px; height: 104px; border-radius: 50%; background: var(--face-bg); overflow: hidden;
+    border: 3px solid var(--kelly); }
+  .card .av svg { display: block; width: 98px; height: 107px; }
+  .card .who .n span { display: block; }
   .card .n { margin: 0; font-size: 30px; font-weight: 800; font-stretch: 80%; letter-spacing: -.02em; line-height: 1.05; }
   .card .n span { color: var(--muted); font-weight: 600; }
   .card ul { list-style: none; margin: 0; padding: 8px 0 0; display: grid; gap: 0; }
@@ -104,6 +110,114 @@
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="ears"><ellipse cx="29.5" cy="49" rx="4.6" ry="5.6" fill="#F1C6A6"/><ellipse cx="70.5" cy="49" rx="4.6" ry="5.6" fill="#F1C6A6"/>
+      <path d="M28.5 46.5 Q30.5 49 28.8 51.5" fill="none" stroke="#DDA383" stroke-width="1.1" stroke-linecap="round"/><path d="M71.5 46.5 Q69.5 49 71.2 51.5" fill="none" stroke="#DDA383" stroke-width="1.1" stroke-linecap="round"/></g>
+    <g id="neck">
+      <path d="M43.5 62 h13 v20 h-13 z" fill="#F1C6A6"/>
+      <path d="M43.5 64 Q50 74 56.5 64 L56.5 71 Q50 76 43.5 71 Z" fill="#DFA886"/>
+    </g>
+    <g id="face">
+      <path d="M29 45 C29 29 38 22 50 22 C62 22 71 29 71 45 C71 59 63 70 50 71 C37 70 29 59 29 45 Z" fill="#F6D2B5"/>
+      <path d="M33 58 C37 66 43 70 50 71 C57 70 63 66 67 58 C63 64 57 67.5 50 68 C43 67.5 37 64 33 58 Z" fill="#EDBE9E"/>
+      <ellipse cx="37" cy="56.5" rx="4.2" ry="3" fill="#F08F87" opacity=".38"/><ellipse cx="63" cy="56.5" rx="4.2" ry="3" fill="#F08F87" opacity=".38"/>
+      <ellipse cx="42" cy="48" rx="2.7" ry="3.3" fill="#1A2420"/><ellipse cx="58" cy="48" rx="2.7" ry="3.3" fill="#1A2420"/>
+      <circle cx="43" cy="46.7" r="1" fill="#fff"/><circle cx="59" cy="46.7" r="1" fill="#fff"/>
+      <path d="M49.6 50.5 Q47.8 54.6 50.6 55" fill="none" stroke="#D9967A" stroke-width="1.3" stroke-linecap="round"/>
+      <path d="M43 58.5 Q50 66.5 57 58.5 Q50 60.6 43 58.5 Z" fill="#7A2E2E"/>
+      <path d="M44.3 59.1 Q50 61.4 55.7 59.1 L55.2 60.3 Q50 62.4 44.8 60.3 Z" fill="#fff"/>
+      <path d="M38 41.6 Q42 39.4 46 41" fill="none" stroke="var(--brow,#5A3A25)" stroke-width="1.7" stroke-linecap="round"/>
+      <path d="M54 41 Q58 39.4 62 41.6" fill="none" stroke="var(--brow,#5A3A25)" stroke-width="1.7" stroke-linecap="round"/>
+    </g>
+    <g id="lashes" fill="none" stroke="#1A2420" stroke-width="1.1" stroke-linecap="round">
+      <path d="M39.4 46 L37.6 44.6"/><path d="M60.6 46 L62.4 44.6"/>
+      <path d="M39.2 45.3 Q42 43.6 44.8 45.3"/><path d="M55.2 45.3 Q58 43.6 60.8 45.3"/>
+    </g>
+    <path id="torso" d="M8 120 C8 98 20 86 38 82 L62 82 C80 86 92 98 92 120 Z"/>
+  </defs>
+
+  <symbol id="k-john" viewBox="0 0 100 120" style="--brow:#8B9094">
+    <use href="#neck"/>
+    <use href="#torso" fill="#2F5FB8"/>
+    <path d="M38.5 82 L50 104 L61.5 82 Z" fill="#DCE8F7"/>
+    <path d="M42 81 L50 92 L45 95 L39 84 Z M58 81 L50 92 L55 95 L61 84 Z" fill="#C3D6EE"/>
+    <path d="M47.2 90 h5.6 l2.2 21 l-5 6.5 l-5 -6.5 Z" fill="#5B2A6E"/>
+    <path d="M47.6 87 h4.8 l-.6 4 h-3.6 Z" fill="#4A2059"/>
+    <g fill="#fff" opacity=".9"><circle cx="48.6" cy="95" r=".9"/><circle cx="51.6" cy="99" r=".9"/><circle cx="48.4" cy="103" r=".9"/><circle cx="51.8" cy="107" r=".9"/><circle cx="49.2" cy="111" r=".9"/></g>
+    <path d="M38 82.5 L50 106 L45 120 L32 120 L27 92 L35 90 Z" fill="#2A55A8"/>
+    <path d="M62 82.5 L50 106 L55 120 L68 120 L73 92 L65 90 Z" fill="#2A55A8"/>
+    <path d="M38 82.5 L35 90 L41 93 Z M62 82.5 L65 90 L59 93 Z" fill="#244A93"/>
+    <use href="#ears"/><use href="#face"/>
+    <path d="M29.5 43 C28 28 37 19.5 51 19.5 C64 19.5 73 27 70.5 42 C69.5 36.5 67 33 63.5 31.5 C57 30 50 30.5 44 31 C38 31.5 33 34 30.5 38.5 Z" fill="#AEB3B7"/>
+    <path d="M36 27 L39.5 21.5 L43 25.5 L46.5 19.5 L50 24 L54 19 L57 23.5 L61 20.5 L63.5 25.5 L67 24 C62 22.5 50 21.5 36 27 Z" fill="#AEB3B7"/>
+    <path d="M42 24.5 C50 21 60 21.5 66 25 C58 23.5 50 24 43 27.5 Z M33 33 C35 29 39 27 43 26.5 C39 29 36 31 33 33 Z" fill="#D7DADC"/>
+    <path d="M30 40 L30 46 L32 46 L32.5 39 Z M70 40 L70 46 L68 46 L67.5 39 Z" fill="#9EA3A7"/>
+  </symbol>
+
+  <symbol id="k-chrissy" viewBox="0 0 100 120" style="--brow:#7A3D20">
+    <path d="M24 46 C22 23 36 14.5 50 14.5 C66 14.5 79 23 76 46 C77 58 79 66 75 73 C70 75 62 75 58 72 L42 72 C38 75 30 75 25 73 C21 66 23 58 24 46 Z" fill="#8E4524"/>
+    <use href="#neck"/>
+    <use href="#torso" fill="#1F2D5A"/>
+    <path d="M14 104 C12 94 16 87 26 84 L34 82 C30 90 28 98 30 106 Z M86 104 C88 94 84 87 74 84 L66 82 C70 90 72 98 70 106 Z" fill="#26376B"/>
+    <path d="M36.5 82 Q50 98 63.5 82 Z" fill="#F1C6A6"/>
+    <g fill="#FFFDF5" stroke="#E2DCCB" stroke-width=".4"><circle cx="39" cy="84.6" r="1.8"/><circle cx="42.4" cy="88.4" r="1.8"/><circle cx="46.2" cy="90.6" r="1.8"/><circle cx="50.2" cy="91.3" r="1.8"/><circle cx="54.2" cy="90.5" r="1.8"/><circle cx="57.9" cy="88.3" r="1.8"/><circle cx="61.2" cy="84.6" r="1.8"/></g>
+    <use href="#face"/><use href="#lashes"/>
+    <path d="M26.5 51 C24.5 28 37 18 53 18 C67 18.5 77 29 73.5 51 C72 43 68 37 62 34 C54 39 41 40 32 43 C29.5 45 27.5 48 26.5 51 Z" fill="#A4532C"/>
+    <path d="M26 43 C23.5 57 25 67 30 74 C33 75.5 36 75 38 73 C32 65 31 54 33 44 Z" fill="#9A4B27"/>
+    <path d="M74 43 C76.5 57 75 67 70 74 C67 75.5 64 75 62 73 C68 65 69 54 67 44 Z" fill="#9A4B27"/>
+    <path d="M38 25 C47 19.5 60 20 67 26.5 C58 23.5 48 24.5 40 29 Z M30 44 C33 38 39 35 46 34 C40 37 35 40 31.5 46 Z" fill="#C0703F"/>
+  </symbol>
+
+  <symbol id="k-brendan" viewBox="0 0 100 120" style="--brow:#4A2E1C">
+    <use href="#neck"/>
+    <use href="#torso" fill="#26386F"/>
+    <path d="M38.5 82 L50 102 L61.5 82 Z" fill="#C9DCF2"/>
+    <path d="M42 81 L50 91 L45.5 94 L39.5 84 Z M58 81 L50 91 L54.5 94 L60.5 84 Z" fill="#B3CBE8"/>
+    <path d="M47.4 89 h5.2 l2 22 l-4.6 6 l-4.6 -6 Z" fill="#141D44"/>
+    <path d="M38 82.5 L50 105 L45 120 L32 120 L27 92 L35 90 Z" fill="#1F2E5E"/>
+    <path d="M62 82.5 L50 105 L55 120 L68 120 L73 92 L65 90 Z" fill="#1F2E5E"/>
+    <circle cx="35.5" cy="95.5" r="2.7" fill="#D3D8DF" stroke="#9AA3B0" stroke-width=".5"/><circle cx="64.5" cy="95.5" r="2.7" fill="#D3D8DF" stroke="#9AA3B0" stroke-width=".5"/>
+    <rect x="22" y="105" width="13" height="4" rx="1" fill="#EDE8DA"/>
+    <g><rect x="64" y="104" width="4" height="3" fill="#B0303A"/><rect x="68" y="104" width="4" height="3" fill="#2A4BA0"/><rect x="72" y="104" width="3" height="3" fill="#E3B23C"/></g>
+    <use href="#ears"/><use href="#face"/>
+    <path d="M29.5 46 C28.5 36 31 30 36 28.5 L37.5 41 C34 41.5 31.5 43 29.5 46 Z" fill="#4E301E"/>
+    <path d="M70.5 46 C71.5 37 70 31 66.5 29 L63.5 40 C66.5 41.5 69 43.5 70.5 46 Z" fill="#4E301E"/>
+    <path d="M31 33 C35 28.5 40 27 43 27 C47 25 52 27 56 27 L56 34 C46 33.5 37 34.5 31 37 Z" fill="#5A3A25"/>
+    <path d="M25.5 38.5 L30.5 21 C45 14.5 62 13.5 78 18.5 L76.5 31 C60 28 43 31 25.5 38.5 Z" fill="#2B3F80"/>
+    <path d="M30.5 21 C45 14.5 62 13.5 78 18.5 L77.4 21.6 C62 17.5 46 18.5 31.6 24.6 Z" fill="#3C54A3"/>
+    <path d="M25.5 38.5 C43 31 60 28 76.5 31 L76.4 33.8 C60 30.8 43 33.8 25.5 41.2 Z" fill="#172453"/>
+  </symbol>
+
+  <symbol id="k-carson" viewBox="0 0 100 120" style="--brow:#5A3620">
+    <path d="M25.5 44 C23.5 23 36 15 50 15 C64 15 76.5 23 74.5 44 C78 62 83 84 78 106 C74 108 69 108 65.5 105 C69 87 67 73 66 63 L34 63 C33 73 31 87 34.5 105 C31 108 26 108 22 106 C17 84 22 62 25.5 44 Z" fill="#6B4128"/>
+    <use href="#neck"/>
+    <use href="#torso" fill="#1E1E1E"/>
+    <path d="M38 81 C42 79 46 78.5 50 78.5 C54 78.5 58 79 62 81 L63 84 C58 86 54 87 50 87 C46 87 42 86 37 84 Z" fill="#1E1E1E"/>
+    <g fill="#3B3B3B"><circle cx="29.2" cy="90.1" r="1.1"/><circle cx="37.2" cy="89.9" r="1.3"/><circle cx="40.7" cy="89.0" r="1.1"/><circle cx="47.3" cy="89.5" r="1.3"/><circle cx="53.9" cy="90.7" r="1.1"/><circle cx="59.7" cy="90.7" r="0.9"/><circle cx="66.4" cy="90.7" r="1.3"/><circle cx="28.7" cy="94.0" r="0.9"/><circle cx="34.0" cy="95.9" r="0.9"/><circle cx="40.4" cy="94.1" r="1.1"/><circle cx="46.9" cy="95.4" r="1.1"/><circle cx="53.6" cy="95.8" r="1.1"/><circle cx="59.7" cy="95.2" r="0.9"/><circle cx="66.1" cy="94.2" r="0.9"/><circle cx="71.0" cy="94.5" r="1.3"/><circle cx="23.8" cy="100.3" r="1.1"/><circle cx="29.8" cy="100.7" r="1.3"/><circle cx="35.6" cy="100.2" r="1.3"/><circle cx="41.2" cy="99.7" r="0.9"/><circle cx="49.1" cy="101.0" r="1.3"/><circle cx="54.6" cy="100.4" r="1.1"/><circle cx="61.4" cy="100.8" r="1.3"/><circle cx="64.8" cy="100.3" r="1.3"/><circle cx="73.0" cy="100.1" r="1.1"/><circle cx="76.9" cy="100.0" r="1.3"/><circle cx="24.5" cy="104.2" r="0.9"/><circle cx="28.7" cy="104.3" r="1.1"/><circle cx="34.8" cy="104.8" r="0.9"/><circle cx="39.6" cy="105.2" r="0.9"/><circle cx="46.6" cy="105.2" r="1.3"/><circle cx="54.1" cy="106.0" r="1.3"/><circle cx="58.2" cy="104.1" r="0.9"/><circle cx="63.7" cy="105.2" r="0.9"/><circle cx="72.3" cy="105.9" r="1.1"/><circle cx="77.3" cy="104.3" r="0.9"/><circle cx="19.4" cy="109.7" r="1.1"/><circle cx="25.4" cy="110.8" r="1.1"/><circle cx="29.6" cy="110.7" r="1.1"/><circle cx="36.4" cy="110.2" r="1.3"/><circle cx="40.8" cy="110.9" r="1.3"/><circle cx="47.3" cy="110.3" r="1.3"/><circle cx="53.2" cy="109.6" r="1.1"/><circle cx="60.1" cy="110.1" r="0.9"/><circle cx="66.9" cy="111.0" r="1.1"/><circle cx="70.6" cy="110.2" r="1.3"/><circle cx="76.9" cy="110.3" r="1.1"/><circle cx="22.9" cy="115.4" r="1.1"/><circle cx="29.3" cy="114.6" r="1.1"/><circle cx="33.6" cy="114.1" r="1.3"/><circle cx="39.6" cy="114.7" r="1.3"/><circle cx="46.9" cy="115.2" r="1.1"/><circle cx="52.0" cy="114.4" r="1.1"/><circle cx="60.0" cy="114.5" r="1.1"/><circle cx="63.8" cy="115.6" r="1.3"/><circle cx="71.6" cy="114.3" r="1.3"/><circle cx="76.2" cy="115.6" r="0.9"/><circle cx="82.5" cy="115.4" r="1.3"/></g>
+    <use href="#face"/><use href="#lashes"/>
+    <path d="M27.5 49 C25.5 28 37 18.5 50 18.5 C63 18.5 74.5 28 72.5 49 C68.5 37.5 60 31 51 29 L50 31.5 L49 29 C40 31 31.5 37.5 27.5 49 Z" fill="#7A4B2E"/>
+    <path d="M27.5 48 C23.5 62 31 72 25 85 C21.5 94 25.5 104 33.5 107 C31.5 97 38 89 34.5 78 C31.5 70 36.5 61 33.5 51 Z" fill="#7A4B2E"/>
+    <path d="M72.5 48 C76.5 62 69 72 75 85 C78.5 94 74.5 104 66.5 107 C68.5 97 62 89 65.5 78 C68.5 70 63.5 61 66.5 51 Z" fill="#7A4B2E"/>
+    <g fill="none" stroke="#9C6741" stroke-width="1.3" stroke-linecap="round">
+      <path d="M38 25 C43 22 47 21.5 49 21.5"/><path d="M29.5 60 C27.5 68 32 72 28.5 80"/><path d="M70.5 60 C72.5 68 68 72 71.5 80"/><path d="M28 88 C26.5 94 28.5 99 31.5 102"/><path d="M72 88 C73.5 94 71.5 99 68.5 102"/>
+    </g>
+  </symbol>
+
+  <symbol id="k-ava" viewBox="0 0 100 120" style="--brow:#3A2216">
+    <path d="M25 46 C23 24 36 15 50 15 C64 15 77 24 75 46 C77 64 79 84 77.5 106 C73.5 107.5 69 107.5 65.5 106 C67 87 67 73 66 63 L34 63 C33 73 33 87 34.5 106 C31 107.5 26.5 107.5 22.5 106 C21 84 23 64 25 46 Z" fill="#3E2518"/>
+    <use href="#neck"/>
+    <use href="#torso" fill="#1E1E1E"/>
+    <path d="M24 90 C33 83 42 81.5 50 81.5 C58 81.5 67 83 76 90 C66 94.5 58 96 50 96 C42 96 34 94.5 24 90 Z" fill="#F1C6A6"/>
+    <path d="M24 90 C33 83 42 81.5 50 81.5 C58 81.5 67 83 76 90 C66 94.5 58 96 50 96 C42 96 34 94.5 24 90 Z" fill="#1E1E1E" opacity=".2"/>
+    <path d="M24 90 C34 94.5 42 96 50 96 C58 96 66 94.5 76 90 L78 92.5 C67 97.5 58 99 50 99 C42 99 33 97.5 22 92.5 Z" fill="#111"/>
+    <use href="#face"/><use href="#lashes"/>
+    <path d="M27 51 C24.5 28 37 18 50 18 C63 18 75.5 28 73 51 C69.5 38.5 61 31 51 29 L50 31.5 L49 29 C39 31 30.5 38.5 27 51 Z" fill="#4A2D1D"/>
+    <path d="M27 48 C24.5 64 27.5 86 25.5 106 L35 106 C34 87 35 67 33.5 51 Z" fill="#4A2D1D"/>
+    <path d="M73 48 C75.5 64 72.5 86 74.5 106 L65 106 C66 87 65 67 66.5 51 Z" fill="#4A2D1D"/>
+    <g fill="none" stroke="#6A4430" stroke-width="1.3" stroke-linecap="round">
+      <path d="M38 25 C43 22 47 21.5 49 21.5"/><path d="M29.5 58 C28.5 72 29.5 86 28.5 100"/><path d="M70.5 58 C71.5 72 70.5 86 71.5 100"/>
+    </g>
+  </symbol>
   <symbol id="five" viewBox="6 0 94 135">
     <rect x="20" y="4" width="46" height="22" fill="#4CBB17"/>
     <rect x="66" y="4" width="24" height="22" rx="3" fill="#E3B23C"/>
@@ -147,7 +261,7 @@
 
 <header class="wrap">
   <a class="mark d" href="./" aria-label="the5kellys, home">the<svg class="five5" viewBox="6 0 94 135" role="img" aria-label="5"><use href="#five"/></svg>kellys</a>
-  <nav aria-label="Family sites"><a href="https://carson.the5kellys.com">Carson</a><a href="https://ava.the5kellys.com">Ava</a></nav>
+  <nav aria-label="Family sites"><a href="https://carson.the5kellys.com" target="_blank" rel="noopener">Carson<span class="vh"> (opens in a new tab)</span></a><a href="https://ava.the5kellys.com" target="_blank" rel="noopener">Ava<span class="vh"> (opens in a new tab)</span></a></nav>
 </header>
 <div class="hero">
   <div class="wrap">
@@ -178,23 +292,23 @@
     <p class="sub">Five Kellys, five cards.</p>
     <ul class="cards">
       <li class="card"><svg class="clover" aria-hidden="true"><use href="#shamrock"/></svg><div class="in">
-        <h3 class="n d">John <span>Kelly</span></h3>
-        <ul><li><a href="https://crinaro.ai">Crinaro.AI <span aria-hidden="true">↗</span></a> <small>AI patterns and advisory</small></li>
-          <li><a href="https://www.linkedin.com/in/johnmkelly/" aria-label="John Kelly on LinkedIn">LinkedIn <span aria-hidden="true">↗</span></a></li></ul></div></li>
+        <div class="who"><div class="av" aria-hidden="true"><svg viewBox="8 9 84 92"><use href="#k-john" width="100" height="120"/></svg></div><h3 class="n d">John <span>Kelly</span></h3></div>
+        <ul><li><a href="https://crinaro.ai" target="_blank" rel="noopener">Crinaro.AI <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a> <small>AI patterns and advisory</small></li>
+          <li><a href="https://www.linkedin.com/in/johnmkelly/" aria-label="John Kelly on LinkedIn (opens in a new tab)" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li></ul></div></li>
       <li class="card"><svg class="clover" aria-hidden="true"><use href="#shamrock"/></svg><div class="in">
-        <h3 class="n d">Chrissy <span>Kelly</span></h3>
+        <div class="who"><div class="av" aria-hidden="true"><svg viewBox="8 9 84 92"><use href="#k-chrissy" width="100" height="120"/></svg></div><h3 class="n d">Chrissy <span>Kelly</span></h3></div>
         <p class="home"><svg class="five5" viewBox="6 0 94 135" aria-hidden="true"><use href="#five"/></svg> the5kellys.com</p></div></li>
       <li class="card"><svg class="clover" aria-hidden="true"><use href="#shamrock"/></svg><div class="in">
-        <h3 class="n d">Brendan <span>Kelly</span></h3>
-        <ul><li><a href="https://www.linkedin.com/in/brendan-kelly-5ab61b184/" aria-label="Brendan Kelly on LinkedIn">LinkedIn <span aria-hidden="true">↗</span></a></li></ul></div></li>
+        <div class="who"><div class="av" aria-hidden="true"><svg viewBox="8 9 84 92"><use href="#k-brendan" width="100" height="120"/></svg></div><h3 class="n d">Brendan <span>Kelly</span></h3></div>
+        <ul><li><a href="https://www.linkedin.com/in/brendan-kelly-5ab61b184/" aria-label="Brendan Kelly on LinkedIn (opens in a new tab)" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li></ul></div></li>
       <li class="card"><svg class="clover" aria-hidden="true"><use href="#shamrock"/></svg><div class="in">
-        <h3 class="n d">Carson <span>Kelly</span></h3>
-        <ul><li><a href="https://carson.the5kellys.com">carson.the5kellys.com <span aria-hidden="true">↗</span></a> <small>website</small></li>
-          <li><a href="https://www.linkedin.com/in/carson-kelly-8b4893228/" aria-label="Carson Kelly on LinkedIn">LinkedIn <span aria-hidden="true">↗</span></a></li></ul></div></li>
+        <div class="who"><div class="av" aria-hidden="true"><svg viewBox="8 9 84 92"><use href="#k-carson" width="100" height="120"/></svg></div><h3 class="n d">Carson <span>Kelly</span></h3></div>
+        <ul><li><a href="https://carson.the5kellys.com" target="_blank" rel="noopener">carson.the5kellys.com <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a> <small>website</small></li>
+          <li><a href="https://www.linkedin.com/in/carson-kelly-8b4893228/" aria-label="Carson Kelly on LinkedIn (opens in a new tab)" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li></ul></div></li>
       <li class="card"><svg class="clover" aria-hidden="true"><use href="#shamrock"/></svg><div class="in">
-        <h3 class="n d">Ava <span>Kelly</span></h3>
-        <ul><li><a href="https://ava.the5kellys.com">ava.the5kellys.com <span aria-hidden="true">↗</span></a> <small>portfolio</small></li>
-          <li><a href="https://www.linkedin.com/in/ava-kelly-795471262/" aria-label="Ava Kelly on LinkedIn">LinkedIn <span aria-hidden="true">↗</span></a></li></ul></div></li>
+        <div class="who"><div class="av" aria-hidden="true"><svg viewBox="8 9 84 92"><use href="#k-ava" width="100" height="120"/></svg></div><h3 class="n d">Ava <span>Kelly</span></h3></div>
+        <ul><li><a href="https://ava.the5kellys.com" target="_blank" rel="noopener">ava.the5kellys.com <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a> <small>portfolio</small></li>
+          <li><a href="https://www.linkedin.com/in/ava-kelly-795471262/" aria-label="Ava Kelly on LinkedIn (opens in a new tab)" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li></ul></div></li>
     </ul>
   </section>
 
